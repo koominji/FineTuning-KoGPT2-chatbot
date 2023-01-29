@@ -184,7 +184,12 @@ class KoGPT2Chat(LightningModule):
         return torch.LongTensor(data), torch.LongTensor(mask), torch.LongTensor(label)
 
     def train_dataloader(self):
-        data = pd.read_csv('Chatbot_data/ChatbotData.csv')
+        ###################### 데이터 추가로 넣어서 concat ############
+        d1 = pd.read_csv('Chatbot_data/ChatbotData.csv')
+        d2 = pd.read_csv('Chatbot_data/ChatbotData2.csv')
+        #data=pd.concat([d1,d2])
+        data =pd.read_csv('/content/KoGPT2-chatbot/Chatbot_data/data_temp.csv')
+        
         self.train_set = CharDataset(data, max_len=self.hparams.max_len)
         train_dataloader = DataLoader(
             self.train_set, batch_size=self.hparams.batch_size, num_workers=2,
