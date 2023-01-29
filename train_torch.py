@@ -186,9 +186,9 @@ class KoGPT2Chat(LightningModule):
     def train_dataloader(self):
         ###################### 데이터 추가로 넣어서 concat ############
         d1 = pd.read_csv('Chatbot_data/ChatbotData.csv')
-        d2 = pd.read_csv('Chatbot_data/ChatbotData2.csv')
+        #d2 = pd.read_csv('Chatbot_data/ChatbotData2.csv')
         #data=pd.concat([d1,d2])
-        data =pd.read_csv('/content/KoGPT2-chatbot/data_temp.csv')
+        data =pd.read_csv('/content/FineTuning-KoGPT2-chatbot/data_temp.csv')
         
         self.train_set = CharDataset(data, max_len=self.hparams.max_len)
         train_dataloader = DataLoader(
